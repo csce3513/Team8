@@ -1,0 +1,179 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// AudioManager.cpp
+// Robert M. Baker | Created : 15FEB12 | Last Modified : 15FEB12 by Robert M. Baker
+// Version : 1.0.0
+// This is a source file for 'Game'; it defines the implementation for an audio manager class.
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+  * @file
+  * @author  Robert M. Baker
+  * @date    Created : 15FEB12
+  * @date    Last Modified : 15FEB12 by Robert M. Baker
+  * @version 1.0.0
+  *
+  * @brief This source file defines the implementation for an audio manager class.
+  *
+  * @section Description
+  *
+  * This source file defines the implementation for an audio manager class.
+  */
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Header Files
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#include <AudioManager.hpp>
+
+using namespace std;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Start of the 'Game' Namespace
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+namespace Game
+{
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Static Field Initializers for the 'AudioManager' Class
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+template<> AudioManager* Singleton< AudioManager >::SingletonInstance = nullptr;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Public Methods for the 'AudioManager' Class
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+AudioManager::AudioManager()
+{
+	// Initialize fields.
+
+		Initialized = false;
+		SystemInstance = nullptr;
+}
+
+AudioManager::~AudioManager() noexcept
+{
+	// Perform necessary cleanup.
+
+		Shutdown();
+}
+
+void AudioManager::Initialize()
+{
+	// Initialize audio system.
+
+		if( FMOD_System_Create( &SystemInstance ) != FMOD_OK )
+			throw exception();
+
+		if( FMOD_System_Init( SystemInstance, 100, FMOD_INIT_NORMAL, nullptr ) != FMOD_OK )
+			throw exception();
+
+		Initialized = true;
+}
+
+void AudioManager::Shutdown()
+{
+	// Shutdown audio system.
+
+		if( Initialized )
+		{
+			Samples.clear();
+			Streams.clear();
+
+			if( FMOD_System_Release( SystemInstance ) != FMOD_OK )
+				throw exception();
+
+			Initialized = false;
+		}
+}
+
+void AudioManager::Update()
+{
+	// Update the audio system.
+
+		if( Initialized )
+		{
+			if( FMOD_System_Update( SystemInstance ) != FMOD_OK )
+				throw exception();
+		}
+}
+
+void AudioManager::Load( const std::string& Path, const std::string& ID, const bool IsStream )
+{
+	// Create local variables.
+
+		FMOD_RESULT Result;
+		FMOD_SOUND* AudioFile = nullptr;
+
+	// Load the specified audio file and insert it into the appropriate audio map.
+
+		if( Initialized )
+		{
+			if( !IsStream )
+			{
+				if( Samples.find( ID ) != Samples.end() )
+					throw exception();
+
+				Result = FMOD_System_CreateSound( SystemInstance, Path.c_str(), FMOD_DEFAULT, nullptr, &AudioFile );
+			}
+			else
+			{
+				if( Streams.find( ID ) != Streams.end() )
+					throw exception();
+
+				Result = FMOD_System_CreateStream( SystemInstance, Path.c_str(), FMOD_DEFAULT, nullptr, &AudioFile );
+			}
+
+			if( Result != FMOD_OK )
+				throw exception();
+
+			if( !IsStream )
+				Samples[ ID ] = AudioFile;
+			else
+				Streams[ ID ] = AudioFile;
+		}
+}
+
+void AudioManager::Play( const std::string& ID, const bool IsStream )
+{
+	// Create local variables.
+
+		FMOD_RESULT Result;
+		AudioMap::iterator AudioMapIterator;
+
+	// Play back specified sample or stream.
+
+		if( Initialized )
+		{
+			if( !IsStream )
+			{
+				AudioMapIterator = Samples.find( ID );
+
+				if( AudioMapIterator == Samples.end() )
+					throw exception();
+			}
+			else
+			{
+				AudioMapIterator = Streams.find( ID );
+
+				if( AudioMapIterator == Streams.end() )
+					throw exception();
+			}
+
+			Result = FMOD_System_PlaySound( SystemInstance, FMOD_CHANNEL_FREE, AudioMapIterator->second, false, nullptr );
+
+			if( Result != FMOD_OK )
+				throw exception();
+		}
+}
+
+} // 'Game' Namespace
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// End of the 'Game' Namespace
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// End of 'AudioManager.cpp'
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

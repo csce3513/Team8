@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Game" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release (32-bit)">
+				<Option output="bin\release\32\Game" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\release\32\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-std=c++0x" />
+					<Add option="-Wall" />
+					<Add option="-m32" />
+					<Add option="-DNDEBUG" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-m32" />
+					<Add library="OIS" />
+					<Add library="fmodex" />
+					<Add library="opengl32" />
+					<Add library="glu32" />
+				</Linker>
+			</Target>
+			<Target title="Release (64-bit)">
+				<Option output="bin\release\64\Game" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\release\64\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-std=c++0x" />
+					<Add option="-Wall" />
+					<Add option="-m64" />
+					<Add option="-DNDEBUG" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-m64" />
+					<Add library="OIS" />
+					<Add library="fmodex" />
+					<Add library="opengl32" />
+					<Add library="glu32" />
+				</Linker>
+			</Target>
+			<Environment>
+				<Variable name="version" value="1.0.0" />
+				<Variable name="namespace" value="Game" />
+			</Environment>
+		</Build>
+		<VirtualTargets>
+			<Add alias="All" targets="Release (32-bit);Release (64-bit);" />
+		</VirtualTargets>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="include\AudioManager.hpp" />
+		<Unit filename="include\Base.hpp" />
+		<Unit filename="include\InputManager.hpp" />
+		<Unit filename="include\Main.hpp" />
+		<Unit filename="include\Singleton.hpp" />
+		<Unit filename="include\VideoManager.hpp" />
+		<Unit filename="src\AudioManager.cpp" />
+		<Unit filename="src\InputManager.cpp" />
+		<Unit filename="src\Main.cpp" />
+		<Unit filename="src\VideoManager.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
