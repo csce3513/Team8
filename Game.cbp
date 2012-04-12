@@ -17,15 +17,17 @@
 					<Add option="-Wall" />
 					<Add option="-m32" />
 					<Add option="-DNDEBUG" />
+					<Add option="-DGLFW_DLL" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
 					<Add option="-m32" />
-					<Add library="OIS" />
 					<Add library="fmodex" />
 					<Add library="opengl32" />
-					<Add library="glu32" />
+					<Add library="glew32" />
+					<Add library="glfw" />
+					<Add library="freeimage" />
 				</Linker>
 			</Target>
 			<Target title="Release (64-bit)">
@@ -39,15 +41,17 @@
 					<Add option="-Wall" />
 					<Add option="-m64" />
 					<Add option="-DNDEBUG" />
+					<Add option="-DGLFW_DLL" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
 					<Add option="-m64" />
-					<Add library="OIS" />
 					<Add library="fmodex" />
 					<Add library="opengl32" />
-					<Add library="glu32" />
+					<Add library="glew32" />
+					<Add library="glfw" />
+					<Add library="freeimage" />
 				</Linker>
 			</Target>
 			<Environment>
@@ -58,18 +62,32 @@
 		<VirtualTargets>
 			<Add alias="All" targets="Release (32-bit);Release (64-bit);" />
 		</VirtualTargets>
-		<Compiler>
-			<Add option="-Wall" />
-		</Compiler>
+		<Unit filename="include\AppManager.hpp" />
+		<Unit filename="include\AppState.hpp" />
 		<Unit filename="include\AudioManager.hpp" />
 		<Unit filename="include\Base.hpp" />
-		<Unit filename="include\InputManager.hpp" />
+		<Unit filename="include\Entities.hpp" />
+		<Unit filename="include\Entities\PlayerCharacter.hpp" />
+		<Unit filename="include\Entities\StaticBlock.hpp" />
 		<Unit filename="include\Main.hpp" />
 		<Unit filename="include\Singleton.hpp" />
+		<Unit filename="include\States.hpp" />
+		<Unit filename="include\States\IntroState.hpp" />
+		<Unit filename="include\States\MainMenuState.hpp" />
 		<Unit filename="include\VideoManager.hpp" />
+		<Unit filename="resources\audio\music\music.mp3" />
+		<Unit filename="resources\audio\sfx\tritone.mp3" />
+		<Unit filename="resources\video\shaders\QuadFragment.glsl" />
+		<Unit filename="resources\video\shaders\QuadVertex.glsl" />
+		<Unit filename="resources\video\sprites\player.png" />
+		<Unit filename="resources\video\sprites\sun.png" />
+		<Unit filename="resources\video\textures\background.png" />
+		<Unit filename="resources\video\textures\ground.png" />
+		<Unit filename="src\AppManager.cpp" />
 		<Unit filename="src\AudioManager.cpp" />
-		<Unit filename="src\InputManager.cpp" />
 		<Unit filename="src\Main.cpp" />
+		<Unit filename="src\States\IntroState.cpp" />
+		<Unit filename="src\States\MainMenuState.cpp" />
 		<Unit filename="src\VideoManager.cpp" />
 		<Extensions>
 			<code_completion />
