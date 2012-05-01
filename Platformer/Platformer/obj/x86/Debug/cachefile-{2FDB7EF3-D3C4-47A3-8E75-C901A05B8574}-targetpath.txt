@@ -36,6 +36,8 @@ Content\Overlays\you_lose.xnb
 Content\Overlays\you_win.xnb
 Content\Tiles\Exit.xnb
 Content\Fonts\Hud.xnb
+Content\Sounds\CustomMusic.xnb
+Content\Sounds\CustomMusic.wma
 Content\Sounds\ExitReached.xnb
 Content\Sounds\GemCollected.xnb
 Content\Sounds\MonsterKilled.xnb
@@ -45,8 +47,6 @@ Content\Sounds\PlayerFall.xnb
 Content\Sounds\PlayerJump.xnb
 Content\Sounds\PlayerKilled.xnb
 Content\Sounds\Powerup.xnb
-Content\Sounds\CustomMusic.xnb
-Content\Sounds\CustomMusic.wma
 Content\Levels\0.txt
 Content\Levels\2.txt
 Content\Levels\1.txt

@@ -1,1 +1,2 @@
 C:\Users\Andrew\Desktop\Game\Platformer\Content\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Andrew\Desktop\Team 8 XNA Game\Team8\Platformer\Content\obj\x86\Debug\ResolveAssemblyReference.cache
