@@ -114,7 +114,10 @@ C:\Users\Andrew\Desktop\Team 8 XNA Game\Team8\Platformer\Platformer\obj\x86\Debu
 C:\Users\Andrew\Desktop\Team 8 XNA Game\Team8\Platformer\Platformer\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Andrew\Desktop\Team 8 XNA Game\Team8\Platformer\Platformer\obj\x86\Debug\Platformer.exe
 C:\Users\Andrew\Desktop\Team 8 XNA Game\Team8\Platformer\Platformer\obj\x86\Debug\Platformer.pdb
+<<<<<<< HEAD
 C:\Users\Andrew\Desktop\Team 8 XNA Game\Team8\Platformer\Platformer\bin\x86\Debug\Platformer.exe.manifest
 C:\Users\Andrew\Desktop\Team 8 XNA Game\Team8\Platformer\Platformer\bin\x86\Debug\Platformer.application
 C:\Users\Andrew\Desktop\Team 8 XNA Game\Team8\Platformer\Platformer\obj\x86\Debug\Platformer.exe.manifest
 C:\Users\Andrew\Desktop\Team 8 XNA Game\Team8\Platformer\Platformer\obj\x86\Debug\Platformer.application
+=======
+>>>>>>> a427bd9ec47e51952d7abf9cfedf7f94c9446a11
